@@ -1,0 +1,107 @@
+{%extends 'base.html'%}
+
+{% block content %}
+{{block.super}}
+
+<body>
+    <div class = "container" style="background-color:navajowhite;">
+    
+     <center><p>My neighbourhood name:{{neighborhood.name}} </p></center>
+     <center><p>My neighbourhood location:{{neighborhood.location}} </p></center>
+     <center><p>My neighbourhood occupants:{{neighborhood.occupants}} </p></center>
+     <center><p>My neighbourhood characteristics:{{neighborhood.characteristics}} </p></center>
+     
+    </div>     
+    <div class="row">
+        <p class="text-center"><strong>POSTS POSTED:</strong></p>
+        {% if profile.neighborhood.posts %}
+          {% for item in posts %}
+      
+          <div class="col-md-4">
+      
+            <center><h2>Title:"{{item.title}}"<h2></center>
+            <center><h2>image:"{{item.image.url}}"<h2></center>
+            <center><h2>Caption:"{{item.caption}}"<h2></center>
+            <center><h2>Pub_date:"{{item.pub_date}}"<h2></center>
+      
+            </div>
+      
+           
+        
+          {% empty %}
+          <h2 class="text-center">There are no posted posts </h2>
+      
+          {% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="row">
+            <p class="text-center"><strong>Businesses in your neighbourhood:</strong></p>
+          
+              {% for business in businesses %}
+          
+              <div class="col-md-4">
+          
+                <center><h2>Name:"{{business.name}}"<h2></center>
+                <center><h2>location:"{{business.location}}"<h2></center>
+                <center><h2>Email:"{{business.email}}"<h2></center>
+                <center><h2>Link:"{{business.link}}"<h2></center>
+          
+                </div>
+          
+               
+            
+              {% empty %}
+              <h2 class="text-center">There are no posted businesses </h2>
+          
+              {% endfor %}
+            </div>
+            <div class="row">
+                <p class="text-center"><strong>Healthcenters in your neighbourhood:</strong></p>
+              
+                  {% for hcenter in hcenters %}
+              
+                  <div class="col-md-4">
+              
+                    <center><h2>Name:"{{hcenter.name}}"<h2></center>
+                    <center><h2>location:"{{hcenter.location}}"<h2></center>
+                    <center><h2>Email:"{{hcenter.email}}"<h2></center>
+                    <center><h2>phone_number:"{{hcenter.phone_number}}"<h2></center>
+              
+                    </div>
+                    
+                   
+                
+                  {% empty %}
+                  <h2 class="text-center">There are no posted health centers </h2>
+              
+                  {% endfor %}
+                </div>
+
+                <div class="row">
+                    <p class="text-center"><strong>Police stations in your neighbourhood:</strong></p>
+                  
+                      {% for police in polices %}
+                  
+                      <div class="col-md-4">
+                  
+                        <center><h2>Name:"{{police.name}}"<h2></center>
+                        <center><h2>location:"{{police.location}}"<h2></center>
+                        <center><h2>Email:"{{police.email}}"<h2></center>
+                        <center><h2>phone_number:"{{police.phone_number}}"<h2></center>
+                  
+                        </div>
+                        
+                       
+                        
+                    
+                      {% empty %}
+                      <h2 class="text-center">There are no posted police stations </h2>
+                  
+                      {% endfor %}
+                    </div>
+</body>
+
+
+</html>
+{% endblock %}
