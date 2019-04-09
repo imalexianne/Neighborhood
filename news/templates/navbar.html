@@ -23,6 +23,7 @@
                   <li>
                     <a href="{%url 'myProfile' user.id %}" class="d-block">View Profile</a>
                   </li>
+
                   <li>
                     <a href="{%url 'profile' %}">Add or Edit Profile</a>
                   </li>
@@ -37,6 +38,9 @@
                   </li>
                   <li>
                     <a href="{%url 'health'%}">Add Health Center</a>
+                  </li>
+                  <li>
+                    <a href="{%url 'myNeighborhood' user.id %}" class="d-block">View Neighbourhood details</a>
                   </li>
                   <li>
                     <a href="/accounts/password/change">Change Password</a>
