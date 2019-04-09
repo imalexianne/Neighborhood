@@ -41,7 +41,7 @@ class Profile(models.Model):
     bio=models.TextField()
     email=models.EmailField()
     location= models.CharField(max_length=80,null=True)
-    neighborhood=models.CharField(max_length=80,null=True)
+    neighborhood=models.ForeignKey(Neighborhood,null=True)
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 
 
@@ -104,7 +104,7 @@ class Health(models.Model):
     location=models.CharField(max_length=150,null=True)
     phone_number=models.IntegerField(null=True)
     email = models.EmailField()
-    neighborhood=models.OneToOneField(Neighborhood,null=True)
+    neighborhood=models.ForeignKey(Neighborhood, null=True)
     
 
     def __str__(self):
@@ -115,7 +115,7 @@ class Police(models.Model):
     location=models.CharField(max_length=150,null=True)
     phone_number=models.IntegerField(null=True)
     email = models.EmailField()
-    neighborhood=models.OneToOneField(Neighborhood,null=True)
+    neighborhood=models.ForeignKey(Neighborhood, null=True)
     
 
     def __str__(self):
