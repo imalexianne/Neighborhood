@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+
+{% block content %}
+{{block.super}}
+
+<body>
+    <div class = "container" style="background-color:navajowhite;">
+    
+     <center><p>Name:{{profiles.first_name}} - {{profiles.last_name}}</p></center>
+     
+     <center><img src="{{profiles.photo.url}}" alt="Image"></center><br><br>
+     <center><p>Bio:{{profiles.bio}}</p></center>
+     
+  
+ 
+    </div>     
+    <div class="row">
+        <p class="text-center"><strong>POSTS I POSTED:</strong></p>
+      
+          {% for item in posts %}
+      
+          <div class="col-md-4">
+      
+            <center><h1>Title:"{{item.title}}"<h1></center>
+      
+            </div>
+      
+      
+          {% empty %}
+          <h2 class="text-center">There are no posted posts </h2>
+      
+          {% endfor %}
+        </div>
+      
+</body>
+
+
+</html>
+{% endblock %}
