@@ -15,7 +15,7 @@ class NeighborhoodForm(forms.ModelForm):
 class BusinessForm(forms.ModelForm):
     class Meta:
         model= Business
-        exclude = ['user','neighborhood']
+        exclude = ['user']
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -31,11 +31,11 @@ class ProfileForm(forms.ModelForm):
 class HealthForm(forms.ModelForm):
     class Meta:
         model= Health
-        exclude = ['neighborhood']
+        exclude = ['user']
 
 class PoliceForm(forms.ModelForm):
     class Meta:
         model= Police
-        exclude = ['neighborhood']
+        exclude = ['user']
 
 
