@@ -8,11 +8,11 @@ from django.contrib.auth.models import User
 @login_required(login_url='/accounts/login/')
 def welcome(request):
     user=request.user
-    # profile=Profile.objects.get(user=user)
-    posts = Post.objects.filter(neighborhood=profile.neighborhood)
-    hcenters=Health.objects.filter(neighborhood=profile.neighborhood)
-    polices = Police.objects.filter(neighborhood=profile.neighborhood)
-    businesses=Business.objects.filter(neighborhood=profile.neighborhood)
+    
+    posts = Post.objects.all()
+    hcenters=Health.objects.all()
+    polices = Police.objects.all()
+    businesses=Business.objects.all()
     return render(request, 'welcome.html',{"posts":posts,"hcenters":hcenters,"polices":polices,"businesses":businesses})
 
 @login_required(login_url='/accounts/login/')
@@ -33,7 +33,7 @@ def myProfile(request,id):
 
 def profile(request):
     current_user = request.user
-    profile=Profile.objects.get(user=current_user)
+    
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
@@ -46,7 +46,7 @@ def profile(request):
 
     else:
         form = ProfileForm()
-    return render(request, 'profile.html', {"form": form,"user":current_user,"profile":profile})
+    return render(request, 'profile.html', {"form": form,"user":current_user})
 
 def neighborhood(request):
     current_user = request.user
