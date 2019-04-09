@@ -15,6 +15,7 @@ urlpatterns=[
     url(r'^search_results/', views.search_results, name='search_results'),
 
     url(r'^myProfile/(\d+)', views.myProfile, name='myProfile'),
+    url(r'^myNeighborhood/(\d+)', views.myNeighborhood, name='myNeighborhood'),
      # url(r'^comments/', views.comments, name='comments'),
     url(r'^post$',views.post,name ='post'),
     url(r'^posts/(\d+)',views.posts,name ='posts'),
