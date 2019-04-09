@@ -41,7 +41,7 @@ class Profile(models.Model):
     bio=models.TextField()
     email=models.EmailField()
     location= models.CharField(max_length=80,null=True)
-    neighborhood=models.OneToOneField(Neighborhood,null=True)
+    neighborhood=models.CharField(max_length=80,null=True)
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 
 
