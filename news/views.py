@@ -29,6 +29,19 @@ def myProfile(request,id):
    
     return render(request,'my_profile.html',{"profiles":profiles,"user":user,"posts":posts,"form":form})
 
+@login_required(login_url='/accounts/login/')
+def myNeighborhood(request,id):
+    user = User.objects.get(id = id)
+    profile = Profile.objects.get(user = user)
+    posts = Post.objects.filter(neighborhood = profile.neighborhood)
+    hcenters=Health.objects.filter(neighborhood = profile.neighborhood)
+    polices = Police.objects.filter(neighborhood = profile.neighborhood)
+    businesses=Business.objects.filter(neighborhood = profile.neighborhood)
+    return render(request, 'myNeighborhood.html',{"posts":posts,"hcenters":hcenters,"polices":polices,"businesses":businesses})
+
+
+
+
 
 
 def profile(request):
