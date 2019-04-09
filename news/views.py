@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 @login_required(login_url='/accounts/login/')
 def welcome(request):
     user=request.user
-    profile=Profile.objects.get(user=user)
+    # profile=Profile.objects.get(user=user)
     posts = Post.objects.filter(neighborhood=profile.neighborhood)
     hcenters=Health.objects.filter(neighborhood=profile.neighborhood)
     polices = Police.objects.filter(neighborhood=profile.neighborhood)
