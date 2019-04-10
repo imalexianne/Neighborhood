@@ -3,105 +3,91 @@
 {% block content %}
 {{block.super}}
 
-<body>
-    <div class = "container" style="background-color:navajowhite;">
+<div id="to" style="background-color:teal;height: 10%;">
+    <h1 class="text-center">WELCOME TO THE NEIGHBOURHOOD WATCH</h1>
     
-     <center><p>My neighbourhood name:{{neighborhood.name}} </p></center>
-     <center><p>My neighbourhood location:{{neighborhood.location}} </p></center>
-     <center><p>My neighbourhood occupants:{{neighborhood.occupants}} </p></center>
-     <center><p>My neighbourhood characteristics:{{neighborhood.characteristics}} </p></center>
-     
-    </div>     
-    <div class="row">
-        <p class="text-center"><strong>POSTS POSTED:</strong></p>
-        {% if profile.neighborhood.posts %}
-          {% for item in posts %}
-      
-          <div class="col-md-4">
-      
-            <center><h2>Title:"{{item.title}}"<h2></center>
-            <center><h2>image:"{{item.image.url}}"<h2></center>
-            <center><h2>Caption:"{{item.caption}}"<h2></center>
-            <center><h2>Pub_date:"{{item.pub_date}}"<h2></center>
-      
-            </div>
-      
-           
-        
-          {% empty %}
-          <h2 class="text-center">There are no posted posts </h2>
-      
-          {% endfor %}
-          {% endif %}
-        </div>
+    {% if profile.neighborhood %}
+        {%for profile.neighborhood in neighborhoods %}
 
-        <div class="row">
-            <p class="text-center"><strong>Businesses in your neighbourhood:</strong></p>
-          
-              {% for business in businesses %}
-          
-              <div class="col-md-4">
-          
-                <center><h2>Name:"{{business.name}}"<h2></center>
-                <center><h2>location:"{{business.location}}"<h2></center>
-                <center><h2>Email:"{{business.email}}"<h2></center>
-                <center><h2>Link:"{{business.link}}"<h2></center>
-          
-                </div>
-          
-               
-            
-              {% empty %}
-              <h2 class="text-center">There are no posted businesses </h2>
-          
-              {% endfor %}
-            </div>
-            <div class="row">
-                <p class="text-center"><strong>Healthcenters in your neighbourhood:</strong></p>
-              
-                  {% for hcenter in hcenters %}
-              
-                  <div class="col-md-4">
-              
-                    <center><h2>Name:"{{hcenter.name}}"<h2></center>
-                    <center><h2>location:"{{hcenter.location}}"<h2></center>
-                    <center><h2>Email:"{{hcenter.email}}"<h2></center>
-                    <center><h2>phone_number:"{{hcenter.phone_number}}"<h2></center>
-              
-                    </div>
-                    
-                   
-                
-                  {% empty %}
-                  <h2 class="text-center">There are no posted health centers </h2>
-              
-                  {% endfor %}
-                </div>
+            <h2 class="text-center">You are in <span>{{profile.neighborhood.name}} </span></h2>
+            <h3 class="text-center">Wich has {{profile.neighborhood.occupants}} occupants</h3>
+        {%endfor%}
+    {%endif%}
+    </div>
+<div class="container">
 
-                <div class="row">
-                    <p class="text-center"><strong>Police stations in your neighbourhood:</strong></p>
-                  
-                      {% for police in polices %}
-                  
-                      <div class="col-md-4">
-                  
-                        <center><h2>Name:"{{police.name}}"<h2></center>
-                        <center><h2>location:"{{police.location}}"<h2></center>
-                        <center><h2>Email:"{{police.email}}"<h2></center>
-                        <center><h2>phone_number:"{{police.phone_number}}"<h2></center>
-                  
-                        </div>
-                        
-                       
-                        
-                    
-                      {% empty %}
-                      <h2 class="text-center">There are no posted police stations </h2>
-                  
-                      {% endfor %}
-                    </div>
-</body>
+<div style="border-bottom:2px solid green">
+<h2>Posts in {{profile.neighborhood.name}}</h2>
 
+{% if profile.neighborhood.posts %}
+{%for post in profile.neighborhood.posts %}
+ 
+<div>
+    <p class="panel panel-heading">{{post.title}}</p>
+    <div class="panel panel-body">
+        <img src="{{post.image.url}}" alt="" height="300">
+ 
+        <p>Posted {{post.pub_date|timesince}}</p>
+    </div>
+</div>
+ {%empty%}
+ <p>No posts in {{profile.neighborhood.name}}</p>
+ 
+ {%endfor%}
+ {%endif%}
+ 
+</div>
 
-</html>
+<div style="border-bottom:2px solid green; margin-top:5%;">
+ <h2>Businesses in {{profile.neighborhood.name}}</h2>
+ {% if profile.neighborhood.businesses %}
+ {%for business in profile.neighborhood.businesses%}
+ <div>
+ <p class="panel panel-heading">{{business.name}}</p>
+ <div class="panel panel-body">
+ <p>E-mail:{{business.email}}</p>
+<p>location:{{business.location}}</p>
+<p>Phone number:{{business.phone_number}}</p>
+</div>
+</div>
+ {%empty%}
+ <p>No businesses in {{profile.neighborhood.name}}</p>
+ {%endfor%}
+ {%endif%}
+</div>
+ <div style="border-bottom:2px solid green; margin-top:5%;">
+
+ <h2>Police Stations in {{profile.neighborhood.name}}</h2>
+ {% if profile.neighborhood.polices %}
+ {%for police in profile.neighborhood.polices %}
+ <p class="panel panel-heading">{{police.name}}</p>
+ <div class="panel panel-body">
+<p>E-mail:{{police.email}}</p>
+<p>Location:{{police.location}}</p>
+<p>Phone number:{{police.phone_number}}</p>
+ </div>
+{%empty%}
+ <p>No Police stations in {{profile.neighborhood.name}}</p>
+ {%endfor%}
+ {%endif%}
+</div>
+
+<div style="border-bottom:2px solid green; margin-top:5%;"> 
+    <h2>Health centers in {{profile.neighborhood.name}}</h2>
+    {% if profile.neighborhood.hcenters %}
+    {%for hcenter in profile.neighborhood.hcenters %}
+    <p class="panel panel-heading">{{hcenter.name}}</p>
+    <div class="panel panel-body">
+   <p>E-mail:{{hcenter.email}}</p>
+   <p>Location:{{hcenter.location}}</p>
+   <p>Phone number:{{hcenter.phone_number}}</p>
+   </div>
+   {%empty%}
+    <p>No Health centers in {{profile.neighborhood}}</p>
+    {%endfor%}
+    {%endif%}
+   </div>
+</div>
+
 {% endblock %}
+
