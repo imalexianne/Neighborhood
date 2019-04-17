@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from .models import User,Post, Profile, Neighborhood,Business,Health,Police
+from .models import User,Post, Profile, Village,Business,Health,Police,Guest
 from django import forms
  
 class SignUpForm(UserCreationForm):
@@ -7,9 +7,9 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('email','password')
 
-class NeighborhoodForm(forms.ModelForm):
+class VillageForm(forms.ModelForm):
     class Meta:
-        model= Neighborhood
+        model= Village
         fields = ('name','location','occupants','characteristics')
 
 class BusinessForm(forms.ModelForm):
@@ -36,6 +36,11 @@ class HealthForm(forms.ModelForm):
 class PoliceForm(forms.ModelForm):
     class Meta:
         model= Police
+        exclude = ['user']
+
+class GuestForm(forms.ModelForm):
+    class Meta:
+        model= Guest
         exclude = ['user']
 
 

@@ -8,17 +8,19 @@ urlpatterns=[
    
     url('^$',views.welcome,name = 'welcome'),
     url(r'^profile/', views.profile, name='profile'),
-    url(r'^neighborhood/', views.neighborhood, name='neighborhood'),
+    url(r'^village/', views.village, name='village'),
     url(r'^business/', views.business, name='business'),
     url(r'^police/', views.police, name='police'),
     url(r'^health/', views.health, name='health'),
     url(r'^search_results/', views.search_results, name='search_results'),
 
     url(r'^myProfile/(\d+)', views.myProfile, name='myProfile'),
-    url(r'^myNeighborhood/(\d+)', views.myNeighborhood, name='myNeighborhood'),
+    url(r'^myVillage/(\d+)', views.myVillage, name='myVillage'),
      # url(r'^comments/', views.comments, name='comments'),
     url(r'^post$',views.post,name ='post'),
     url(r'^posts/(\d+)',views.posts,name ='posts'),
+    url(r'^guest/', views.guest, name='guest'),
+
 
    
 ]

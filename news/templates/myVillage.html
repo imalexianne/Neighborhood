@@ -1,0 +1,87 @@
+{%extends 'base.html'%}
+
+{% block content %}
+{{block.super}}
+
+<div id="to" style="background-color:teal;height: 10%;">
+    <h1 class="text-center">Wellcome to {{profile.village.name}} news! </h1>
+    <h2 class="text-center">You are in <span>{{profile.village.name}} </span></h2>
+    <h3 class="text-center">Wich has {{profile.village.occupants}} occupants</h3>
+        
+</div>
+<div class="container">
+
+    <div style="border-bottom:2px solid green">
+        <h2>Posts in {{profile.village.name}}</h2>
+
+        
+        {%for post in posts %}
+ 
+        <p class="panel panel-heading">{{post.title}}</p>
+        
+        <img src="{{post.image.url}}" alt="" height="300">
+
+        <p>Posted {{post.pub_date|timesince}}</p>
+       
+        {%empty%}
+        <p>No businesses in {{profile.village.name}}</p>
+        {%endfor%}
+        
+ 
+ 
+    </div>
+
+    <div style="border-bottom:2px solid green; margin-top:5%;">
+        <h2>Businesses in {{profile.village.name}}</h2>
+        
+        {%for business in businesses%}
+        <div>
+            <p class="panel panel-heading">{{business.name}}</p>
+            <div class="panel panel-body">
+                <p>E-mail:{{business.email}}</p>
+                <p>location:{{business.location}}</p>
+                <p>Phone number:{{business.phone_number}}</p>
+            </div>
+        </div>
+        {%empty%}
+        <p>No businesses in {{profile.village.name}}</p>
+        {%endfor%}
+        
+        
+    </div>
+    <div style="border-bottom:2px solid green; margin-top:5%;">
+
+        <h2>Police Stations in {{profile.village.name}}</h2>
+        
+        {%for police in polices %}
+        <p class="panel panel-heading">{{police.name}}</p>
+        <div class="panel panel-body">
+            <p>E-mail:{{police.email}}</p>
+            <p>Location:{{police.location}}</p>
+            <p>Phone number:{{police.phone_number}}</p>
+        </div>
+        {%empty%}
+        <p>No Police stations in {{profile.village.name}}</p>
+        {%endfor%}
+        
+    </div>
+
+    <div style="border-bottom:2px solid green; margin-top:5%;"> 
+        <h2>Health centers in {{profile.village.name}}</h2>
+        
+        {%for hcenter in hcenters %}
+        <p class="panel panel-heading">{{hcenter.name}}</p>
+        <div class="panel panel-body">
+            <p>E-mail:{{hcenter.email}}</p>
+            <p>Location:{{hcenter.location}}</p>
+            <p>Phone number:{{hcenter.phone_number}}</p>
+        </div>
+        {%empty%}
+        <p>No Health centers in {{profile.village}}</p>
+        {%endfor%}
+        
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Neighborhood(models.Model):
+class Village(models.Model):
     name = models.CharField(max_length=80, null=True)
     location = models.CharField(max_length=80, null=True)
     occupants=models.IntegerField()
@@ -10,22 +10,22 @@ class Neighborhood(models.Model):
     def __str__(self):
         return self.name
     @classmethod
-    def create_neighborhood(cls,name,location,occupants,characteristics):
-        neighborhood=Neighborhood(name=name,location=location,occupants=occupants,characteristics=characteristics)
-        return neighborhood
+    def create_village(cls,name,location,occupants,characteristics):
+        village=Village(name=name,location=location,occupants=occupants,characteristics=characteristics)
+        return village
      
     @classmethod
-    def find_neighborhood(cls,id):
-        neighborhood=cls.objects.get(id=id)
-        return neighborhood
+    def find_village(cls,id):
+        village=cls.objects.get(id=id)
+        return village
 
-    def save_neighborhood(self):
+    def save_village(self):
         self.save()
 
-    def delete_neighborhood(self):
+    def delete_village(self):
         self.delete()
 
-    def update_neighborhood(self,characteristics):
+    def update_village(self,characteristics):
         self.name=characteristics
         self.save()
 
@@ -41,7 +41,7 @@ class Profile(models.Model):
     bio=models.TextField()
     email=models.EmailField()
     location= models.CharField(max_length=80,null=True)
-    neighborhood=models.ForeignKey(Neighborhood,null=True)
+    village=models.ForeignKey(Village,null=True)
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 
 
@@ -55,15 +55,15 @@ class Business(models.Model):
     location=models.CharField(max_length=100,null=True)
     email=models.EmailField()
     link=models.CharField(max_length=150,null=True)
-    neighborhood=models.ForeignKey(Neighborhood,null=True)
+    village=models.ForeignKey(Village,null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.name
 
     @classmethod
-    def create_business(cls,name,location,neighborhood,email):
-        business=Business(name=name,location=location,email=email,link=link,neighborhood=neighborhood,user=user)
+    def create_business(cls,name,location,village,email):
+        business=Business(name=name,location=location,email=email,link=link,village=village,user=user)
         return business
     @classmethod
     def find_business(cls,id):
@@ -90,10 +90,13 @@ class Post(models.Model):
     caption=models.CharField(max_length=80,null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-    neighborhood=models.ForeignKey(Neighborhood, null=True)
+    village=models.ForeignKey(Village, null=True)
 
     def __str__(self):
         return self.title
+
+    def save_post(self):
+        self.save()
 
 
      
@@ -104,22 +107,41 @@ class Health(models.Model):
     location=models.CharField(max_length=150,null=True)
     phone_number=models.IntegerField(null=True)
     email = models.EmailField()
-    neighborhood=models.ForeignKey(Neighborhood, null=True)
+    village=models.ForeignKey(Village, null=True)
     
 
     def __str__(self):
         return self.name
+
+    def save_health(self):
+        self.save()
 
 class Police(models.Model):
     name=models.CharField(max_length=80,null=True)
     location=models.CharField(max_length=150,null=True)
     phone_number=models.IntegerField(null=True)
     email = models.EmailField()
-    neighborhood=models.ForeignKey(Neighborhood, null=True)
+    village=models.ForeignKey(Village, null=True)
     
 
     def __str__(self):
         return self.name
+    def save_police(self):
+        self.save()
+
+class Guest(models.Model):
+    name=models.CharField(max_length=80,null=False)
+    location=models.CharField(max_length=150,null=False)
+    phone_number=models.IntegerField(null=True)
+    id_number=models.IntegerField(null=True)
+    village=models.ForeignKey(Village, null=True)
+    
+
+    def __str__(self):
+        return self.name
+
+    def save_guest(self):
+        self.save()
 
 
 

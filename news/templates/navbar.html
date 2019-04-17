@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse" style="height:50px;background-color:navajowhite;margin-bottom:-20px;">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'welcome' %}"> Neighborhood</a>
+            <a class="navbar-brand" href="{% url 'welcome' %}"> Get Updated</a>
           </div>
       
       
@@ -17,7 +17,7 @@
                     <a href="{%url 'welcome'%}">Home</a>
                   </li>
                   <li>
-                    <a href="{%url 'neighborhood' %}">Add or Edit Neighborhood</a> 
+                    <a href="{%url 'village' %}">Add or Edit village</a> 
                   </li>
 
                   <li>
@@ -40,7 +40,7 @@
                     <a href="{%url 'health'%}">Add Health Center</a>
                   </li>
                   <li>
-                    <a href="{%url 'myNeighborhood' user.id %}" class="d-block">View Neighbourhood details</a>
+                    <a href="{%url 'myVillage' user.id %}" class="d-block">View my village information</a>
                   </li>
                   <li>
                     <a href="/accounts/password/change">Change Password</a>
@@ -48,6 +48,9 @@
                   <li>
                     <a href="{%url 'search_results'%}">Search Business</a>
                   </li>
+                  <li>
+                      <a href="{%url 'guest'%}">Register your guest</a>
+                    </li>
                   <li>
                     <a href="/logout">Logout</a>
                   </li>

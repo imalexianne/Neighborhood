@@ -1,9 +1,9 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, NeighborhoodForm, ProfileForm, PostForm, BusinessForm, PoliceForm, HealthForm
+from .forms import SignUpForm, VillageForm, ProfileForm, PostForm, BusinessForm, PoliceForm, HealthForm, GuestForm
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Post, Business, Police, Health
+from .models import Village,Profile, Post, Business, Police, Health
 from django.contrib.auth.models import User
 @login_required(login_url='/accounts/login/')
 def welcome(request):
@@ -30,14 +30,15 @@ def myProfile(request,id):
     return render(request,'my_profile.html',{"profiles":profiles,"user":user,"posts":posts,"form":form})
 
 @login_required(login_url='/accounts/login/')
-def myNeighborhood(request,id):
+def myVillage(request,id):
     user = User.objects.get(id = id)
+    village = Village.objects.get(id = id)
     profile = Profile.objects.get(user = user)
-    posts = Post.objects.filter(neighborhood = profile.neighborhood)
-    hcenters=Health.objects.filter(neighborhood = profile.neighborhood)
-    polices = Police.objects.filter(neighborhood = profile.neighborhood)
-    businesses=Business.objects.filter(neighborhood = profile.neighborhood)
-    return render(request, 'myNeighborhood.html',{"posts":posts,"hcenters":hcenters,"polices":polices,"businesses":businesses})
+    posts = Post.objects.filter(village = profile.village)
+    hcenters=Health.objects.filter(village = profile.village)
+    polices = Police.objects.filter(village = profile.village)
+    businesses=Business.objects.filter(village = profile.village)
+    return render(request, 'myVillage.html',{"village":village,"profile":profile, "posts":posts,"hcenters":hcenters,"polices":polices,"businesses":businesses})
 
 
 
@@ -61,20 +62,20 @@ def profile(request):
         form = ProfileForm()
     return render(request, 'profile.html', {"form": form,"user":current_user})
 
-def neighborhood(request):
+def village(request):
     current_user = request.user
     if request.method == 'POST':
-        form = NeighborhoodForm(request.POST, request.FILES)
+        form = VillageForm(request.POST, request.FILES)
         if form.is_valid():
-            neighborhood = form.save(commit=False)
-            neighborhood.user = current_user
-            neighborhood.save()
+            village = form.save(commit=False)
+            village.user = current_user
+            village.save()
 
         return redirect(welcome)
 
     else:
-        form = NeighborhoodForm()
-    return render(request, 'neighborhood.html', {"form": form})
+        form = VillageForm()
+    return render(request, 'village.html', {"form": form})
 
 def business(request):
     current_user = request.user
@@ -148,5 +149,18 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+def guest(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = GuestForm(request.POST, request.FILES)
+        if form.is_valid():
+            guest = form.save(commit=False)
+            guest.user = current_user
+            guest.save()
+            return redirect(welcome)
+    else:
+        form = GuestForm()
+    return render(request, 'guest.html', {"form": form})
 
 # Create your views here.
