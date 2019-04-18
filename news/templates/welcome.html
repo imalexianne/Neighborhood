@@ -3,9 +3,53 @@
 {% block content %}
 {{block.super}}
 
-<div id="to" style="background-color:teal;height: 10%;">
-    <h1 class="text-center">WELCOME TO THE UPDATED NEWS</h1>
+<!-- <div id="to" style="background-color:white;height: 10%;"> -->
+    <!-- <h1 class="text-center">WELCOME TO THE VILLAGE UPDATED NEWS</h1> -->
+<body >
     
+        <h1>
+        GET UPDATED
+        </h1>
+
+     <div class="container">
+        <div class="row"> 
+            <div class="col-md-6">
+                    <a href="{%url 'business' %}" class="d-block">PUBLISH YOUR BUSINESSES </a> 
+                    <img src="https://www.volunteeringnz.org.nz/wp-content/uploads/blackboard-business-chalkboard-355988-2.jpg" alt="My business"> <br><br> 
+            </div> 
+            <div class="col-md-6">
+                    <a href="{%url 'police' %}" class="d-block">REGISTER POLICE STATION IN YOUR VILLAGE </a>
+                    <img src="https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2017/04/25/Pictures/police_7bfc44e6-29d6-11e7-b189-41b029cdb6ad.jpg" alt="Police Station"> 
+            </div> 
+            
+         </div>
+         <div class="row">
+             <div class="col-md-6">
+                    <a href="{%url 'health' %}" class="d-block">REGISTER HEALTH CENTER IN YOUR VILLAGE </a> 
+                    <img src="https://build.com.edu/uploads/sitecontent/images/learning-centers/allied-health-building.jpg" alt="Health Center"> <br><br>
+
+             </div>
+             <div class="col-md-6">
+                    <a href="{%url 'post' %}" class="d-block">PUBLISH ANY OTHER POST </a>
+                    <img src="https://static.makeuseof.com/wp-content/uploads/2018/02/post-panorama-instagram-670x335.jpg" alt="ANY POST"><br><br>
+             </div>
+            </div>
+        <div class="row">
+             <div class="col-md-6">
+                    <a href="{%url 'myVillage' user.id %}" class="d-block">WELLCOME ON YOUR VILLAGE INFORMATIONS </a>
+                    <img src="https://www.wikivillage.in/img/slide3.jpg" alt="My village"><br><br>
+            </div>
+            
+            <div class="col-md-6">
+                    <a href="{%url 'guest' %}" class="d-block">REGISTER YOUR GUEST </a>
+                    <img src="http://sdconnectforsuccess.weebly.com/uploads/1/2/2/5/12258758/s105676106494395387_p14_i1_w305.jpeg" alt="Police Station"> 
+            </div> 
+        </div>
+          
+            
+    </div>
+    
+
+</body>  
     
 {% endblock %}
-
